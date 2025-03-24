@@ -1,0 +1,41 @@
+  .container{
+    background-color: rgb(225, 219, 211);
+  
+  }
+  .navbar {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: left;
+  }
+  
+  .navbar .navbar-link {
+    text-decoration: none;
+    color: rgb(212, 135, 135);
+    padding: 10px 20px;
+  }
+  
+  .navbar .navbar-link:hover {
+    background-color: #b03636;
+  }
+
+  .nav2{
+    display: flex;
+    justify-content: center;
+  }
+  .nav2 .navbar-link{
+    text-decoration: none;
+    color: rgb(28, 13, 201);
+    padding: 10px 20px;
+  }
+  .nav2 .navbar-link:hover {
+    background-color: #a4ba14;
+  }
+
+  @media (max-width: 768px) {
+    /* Mobile adjustments */
+    nav {
+      flex-direction: column;
+      text-align: center;
+    }
+  }

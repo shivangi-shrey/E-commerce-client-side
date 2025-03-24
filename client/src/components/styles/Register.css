@@ -1,0 +1,136 @@
+/* Register.css */
+
+/* Basic Styling */
+
+  
+  /* Center the form in the viewport */
+  h2 {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  /* Container for the form */
+ .register-page{
+    background-color: rgb(201, 210, 177);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    justify-self: center;
+ }
+  /* Input Fields Styling */
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+  }
+  
+  .input-group input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Error and Success Messages */
+  .error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 10px;
+  }
+  
+  .success-message {
+    color: green;
+    font-size: 0.875rem;
+    margin-top: 10px;
+  }
+  
+  /* Submit Button */
+  button {
+    width: 100%;
+    padding: 14px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Link to Login Page */
+  .login-link {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .login-link p {
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  .login-link a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .login-link a:hover {
+    color: #0056b3;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    div {
+      padding: 15px;
+      width: 90%;
+    }
+  
+    h2 {
+      font-size: 1.8rem;
+      margin-top: 30px;
+    }
+  
+    .input-group input {
+      padding: 10px;
+      font-size: 0.9rem;
+    }
+  
+    button {
+      padding: 12px;
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    div {
+      width: 100%;
+      padding: 10px;
+    }
+  
+    h2 {
+      font-size: 1.6rem;
+      margin-top: 20px;
+    }
+  
+    .input-group input {
+      padding: 8px;
+      font-size: 0.85rem;
+    }
+  
+    button {
+      padding: 10px;
+      font-size: 0.9rem;
+    }
+  }
+  /*  */
