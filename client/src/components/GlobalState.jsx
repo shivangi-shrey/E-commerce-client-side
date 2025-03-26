@@ -1,38 +1,53 @@
 import React, { createContext, useEffect, useState } from "react";
-import axios from 'axios'; // Import axios
-import ProductApi from "../api/ProductApi"; // Import the ProductApi file
-// import UserApi from "../api/UserApi"; // Import the UserApi file
+import axios from 'axios'; 
+import ProductApi from "../api/ProductApi"; 
 
-// Create a global context to share state across the app
 export const GlobalState = createContext();
 
 const DataProvider = ({ children }) => {
-  const [token, setToken] = useState(false); // Initialize token from localStorage
-  const productApi = ProductApi(); // Get the product data from ProductApi
-  // console.log('Token in DataProvider:', token); // Log the token value
+  const [token, setToken] = useState(false); 
+  const productApi = ProductApi();
+  const [cart, setCart] = useState(() => {
+    return JSON.parse(localStorage.getItem('cart')) || []; // Load cart from localStorage
+  });
 
-  // const refreshToken = async () => {
-  //   const res = await axios.get('/user/refresh_token');
-    
-  //   setToken(res.data.accesstoken);
-  // };
+  // Function to add a product to cart
+  const addToCart = (product) => {
+    const isLoggedIn = localStorage.getItem('user'); // Check if user is logged in
 
-  // useEffect(() => {
-  //   const firstLogin = localStorage.getItem('firstlogin');
-  //   if (firstLogin) {
-  //     refreshToken();
-  //   }
-  // }, []); // Dependency array ensures it only runs once when the component mounts
+    if (!isLoggedIn) {
+      alert("Please log in first.");
+      return;
+    }
+
+    const existingCart = [...cart];
+
+    // Check if product already exists in cart
+    const productExists = existingCart.find(item => item._id === product._id);
+    if (productExists) {
+      alert("This product is already in your cart!");
+      return;
+    }
+
+    const updatedCart = [...existingCart, product];
+
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart)); // Save to localStorage
+    window.dispatchEvent(new Event("storage")); // Notify other components
+
+    alert(`${product.title} added to cart!`);
+  };
 
   const state = {
-    token: [token, setToken], // Providing the token and setter in the global state
-    productApi,   // Providing the product API state
+    token: [token, setToken], 
+    productApi,   
+    cart: [cart, setCart], // Add cart state
+    addToCart,  // Provide addToCart function globally
   };
 
   return (
     <GlobalState.Provider value={state}>
-      {/* <UserApi token={token} /> Render UserApi component and pass token */}
-      {children} {/* Rendering children components inside the provider */}
+      {children} 
     </GlobalState.Provider>
   );
 };

@@ -1,31 +1,26 @@
-
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';  // To access route parameters
+import { useParams } from 'react-router-dom';
 import { GlobalState } from '../../GlobalState';
-import '../../styles/DetailProduct.css'
+import '../../styles/DetailProduct.css';
+
 const ProductDetail = () => {
-  const { id } = useParams();  // Retrieve the product ID from the URL
-  const { products } = useContext(GlobalState).productApi;  // Get products from global state
-  const [product, setProduct] = useState(null);  // State to store the product data
-  const [loading, setLoading] = useState(true);  // Loading state
+  const { id } = useParams();
+  const globalState = useContext(GlobalState);
+  const { products } = globalState.productApi; // Get products
+  const { addToCart } = globalState; // ✅ Get `addToCart` from GlobalState
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const foundProduct = products.find(product => product._id === id);  // Find the product based on id
+    const foundProduct = products.find((product) => product._id === id);
     if (foundProduct) {
       setProduct(foundProduct);
-      setLoading(false);
-    } else {
-      setLoading(false);  // If no product found, just stop loading
     }
-  }, [id, products]);  // Re-run when product list or id changes
+    setLoading(false);
+  }, [id, products]);
 
-  if (loading) {
-    return <div>Loading...</div>;  // Display loading text
-  }
-
-  if (!product) {
-    return <div>Product not found.</div>;  // Handle product not found
-  }
+  if (loading) return <div>Loading...</div>;
+  if (!product) return <div>Product not found.</div>;
 
   return (
     <div className="product-detail">
@@ -42,7 +37,7 @@ const ProductDetail = () => {
           <p><strong>Sold:</strong> {product.sold}</p>
           
           <div className="add-to-cart">
-            <button>Add to Cart</button>
+            <button onClick={() => addToCart(product)}>Add to Cart</button> {/* ✅ Now `addToCart` works */}
           </div>
         </div>
       </div>
