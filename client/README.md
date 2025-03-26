@@ -9,4 +9,4 @@ Currently, two official plugins are available:
 
 
 
- link of my project - https://shivangi-modern-shop.netlify.app/
+ link of my project - https://modern-shop-shivangi.netlify.app/
