@@ -1,20 +1,26 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import '../../styles/ProductList.css'
+import React,{useContext} from 'react';
+import { Link } from 'react-router-dom';
+import '../../styles/ProductList.css';
+import { GlobalState } from '../../GlobalState';
 
-const ProductList = ({ product, addToCart }) => {  // Add addToCart function as prop
+const ProductList = ({ product }) => { 
+  const { addToCart } = useContext(GlobalState); 
 
   const handleAddToCart = () => {
-    const isLoggedIn = localStorage.getItem('user'); // Assume login status stored in localStorage
+    const user = localStorage.getItem('user'); 
+    const token = localStorage.getItem('token');
 
-    if (!isLoggedIn) {
-      alert('Please log in first.');
-      return;
+    console.log('User from localStorage:', user); 
+    console.log('Token from localStorage:', token); 
+
+    if (!user || !token) { // ✅ Ensure both user and token exist
+        alert('Please log in first.');
+        return;
     }
 
     addToCart(product);
     alert(`${product.title} added to cart!`);
-  };
+};
 
   return (
     <div className='product_card'>
@@ -26,8 +32,8 @@ const ProductList = ({ product, addToCart }) => {  // Add addToCart function as 
       </div>
       <div className='row-btn'>
         <button onClick={handleAddToCart}>Add to Cart</button>
-        <Link id='#btn_buy' to={'/cart'}>Buy</Link>
-        <Link id='#btn_view' to={`/detail/${product._id}`}>View</Link>
+        <Link id='btn_buy' to={'/cart'}>Buy</Link>
+        <Link id='btn_view' to={`/detail/${product._id}`}>View</Link>
       </div>
     </div>
   );

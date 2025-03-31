@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import "../../styles/Register.css"
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Register = () => {
   const [user,setUser]= useState({
@@ -26,7 +27,7 @@ const Register = () => {
     setMessage('');
 
     try {
-      const response = await axios.post('http://localhost:5000/user/register', user);
+      const response = await axios.post(`${API_BASE_URL}/user/register`, user);
       setMessage(response.data.msg); // Display success message
       navigate('/login'); // Redirect to login page after successful registration
     } catch (err) {

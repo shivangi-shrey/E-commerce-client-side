@@ -1,7 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-  import '../../styles/Login.css'
+import '../../styles/Login.css';
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';  // Fallback to local server for development
+console.log("API Base URL:", API_BASE_URL);
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -18,15 +21,19 @@ const Login = () => {
 
     try {
       // Send login request to server
-      const response = await axios.post('http://localhost:5000/user/login', {
-        ...user,
-      });
-      console.log(response.data)
+      const response = await axios.post(
+        `${API_BASE_URL}/user/login`,
+        { ...user },
+        { withCredentials: true }
+      );
+
+      console.log(response.data);
 
       // If login is successful, store the token and redirect
       if (response.data.accesstoken) {
         localStorage.setItem('token', response.data.accesstoken); // Store token in localStorage
-        window.location.href ="/product"; // Redirect to dashboard or any other page
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        navigate("/product"); // Redirect to the product page (or any other page)
       }
     } catch (err) {
       // Set error message if login fails
@@ -37,10 +44,10 @@ const Login = () => {
   // Handle changes in input fields
   const onChangeInput = (e) => {
     const { name, value } = e.target;
-    setUser({
-      ...user,
+    setUser((prevUser) => ({
+      ...prevUser,
       [name]: value, // Dynamically update the field that changed
-    });
+    }));
   };
 
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import Products from './product/Products';
 import { Route, Routes } from 'react-router-dom';
-import Register from './register/register';
+import Register from './register/Register';
 import Cart from './carts/Cart';
 import Login from './login/Login';
 import Home from './modernshop/Home';
@@ -12,7 +12,7 @@ const Pages = () => {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/product' element={<Products />} />
+       <Route path='/product' element={<Products />} /> 
       
       <Route path='/categories' element = {<Categories/>}/>
       <Route path='/login' element={<Login />} />
