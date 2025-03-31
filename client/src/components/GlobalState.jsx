@@ -11,33 +11,31 @@ const DataProvider = ({ children }) => {
     return JSON.parse(localStorage.getItem('cart')) || []; // Load cart from localStorage
   });
 
-  // Function to add a product to cart
   const addToCart = (product) => {
-    const isLoggedIn = localStorage.getItem('user'); // Check if user is logged in
-
+    const isLoggedIn = localStorage.getItem('user');
+  
     if (!isLoggedIn) {
       alert("Please log in first.");
       return;
     }
-
-    const existingCart = [...cart];
-
-    // Check if product already exists in cart
+  
+    const existingCart = JSON.parse(localStorage.getItem('cart') || []);
     const productExists = existingCart.find(item => item._id === product._id);
+  
     if (productExists) {
       alert("This product is already in your cart!");
       return;
     }
+    // console.log("Adding product to cart:", product);
 
-    const updatedCart = [...existingCart, product];
-
+     const productWithQuantity = { ...product, quantity: 1 }; // Add a quantity of 1 initially
+    const updatedCart = [...existingCart, productWithQuantity];
+  
     setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart)); // Save to localStorage
-    window.dispatchEvent(new Event("storage")); // Notify other components
-
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
     alert(`${product.title} added to cart!`);
   };
-
+  
   const state = {
     token: [token, setToken], 
     productApi,   
