@@ -13,7 +13,7 @@ function App() {
     <Router>
       <Header></Header>
       <Navbar></Navbar>
-      <Pages></Pages>
+       <Pages></Pages> 
       <Footer></Footer>
       
     </Router>
