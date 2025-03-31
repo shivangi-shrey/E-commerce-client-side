@@ -1,0 +1,114 @@
+/* General Cart Container */
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Cart Item Image */
+  .cart-item img {
+    width: 70px; /* Resize the image to fit well on mobile */
+    height: auto;
+    margin-right: 15px;
+    border-radius: 5px;
+  }
+  
+  /* Cart Item Title */
+  .cart-item h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  
+  /* Cart Item Description */
+  .cart-item p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+  }
+  
+  /* Cart Item Price */
+  .cart-item .price {
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+  }
+  
+  /* Cart Item Quantity */
+  .cart-item .quantity {
+    font-size: 14px;
+    color: #888;
+    margin-top: 5px;
+  }
+  
+  /* Cart Total */
+  .cart-total {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  /* Mobile-First Design (responsive) */
+  @media (max-width: 768px) {
+    .cart-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .cart-item img {
+      width: 60px; /* Adjust image size for mobile */
+    }
+  
+    .cart-item h3 {
+      font-size: 16px; /* Smaller title on mobile */
+    }
+  
+    .cart-item p {
+      font-size: 12px; /* Adjust text size for better readability */
+    }
+  
+    .cart-total {
+      font-size: 16px;
+    }
+  
+    /* Center-align cart total */
+    .cart-total {
+      text-align: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    /* For very small devices like phones in portrait mode */
+    .cart-item {
+      padding: 8px;
+      font-size: 12px;
+    }
+  
+    .cart-item img {
+      width: 50px; /* Smaller image size */
+    }
+  
+    .cart-item h3 {
+      font-size: 14px; /* Adjust the product title size */
+    }
+  
+    .cart-total {
+      font-size: 14px;
+    }
+  
+    .cart-item p {
+      font-size: 12px; /* Adjust text size */
+    }
+  }
+  
