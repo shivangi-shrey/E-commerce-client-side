@@ -6,10 +6,12 @@ const ProductApi = () => {
 
   const getProducts = async () => {
     try {
-      const res = await axios.get(`${API_BASE_URL}/api/`); // Your API endpoint
-      console.log("API Response:", res.data); // Log the entire response
+      const res = await axios.get(`${API_BASE_URL}/api`); // Your API endpoint
+      console.log("API Response9:", res.data); // Log the entire response
+      // console.log("res.data is an array", res.data);
       
       if (res.data && Array.isArray(res.data)) {
+        console.log("res.data is an array", res.data);
         setProducts(res.data);
       } else {
         console.error("Invalid response structure. Expected an array in 'products'.");
