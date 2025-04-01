@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../styles/Login.css';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';  // Fallback to local server for development
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL   // Fallback to local server for development
 console.log("API Base URL:", API_BASE_URL);
 
 const Login = () => {
